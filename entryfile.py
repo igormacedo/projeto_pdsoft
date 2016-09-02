@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'mysql'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'BucketList'
+app.config['MYSQL_DB'] = 'mysql'
 mysql = MySQL(app)
 
 @app.route("/")
@@ -15,7 +15,7 @@ def hello():
 @app.route('/db')
 def users():
     cur = mysql.connection.cursor()
-    cur.execute('''SELECT * FROM tbl_user''')
+    cur.execute('''SELECT User FROM user''')
     rv = cur.fetchall()
     return str(rv)
 
