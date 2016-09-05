@@ -7,16 +7,13 @@
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/stilo_np.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.css') }}">
     <!-- Scripts padrão -->
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.9.1.js') }}"></script>
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </head>
 
 <body>
-
     <div class="container">
         <div class="header">
             <nav>
@@ -25,7 +22,7 @@
                     </li>
                     <li role="presentation"><a data-toggle="modal" data-target="#myModal" href="#">Sign In</a>
                     </li>
-                    <li role="presentation"><a href="/db">Access DB</a>
+                    <li role="presentation"><a href="/membersview">Access DB</a>
                     </li>
                     <li role="presentation"><a href="showSignUp">Sign Up</a>
                     </li>
@@ -34,32 +31,55 @@
             <h3 class="text-muted">Python Flask App</h3>
         </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal">
-            Cadastrar
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" name="myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+        {% if cadastro == 1 %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Parabéns!</strong> O membro foi cadastrado com sucesso!
             </div>
-          </div>
-        </div>
+         {% elif cadastro == 2 %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Aviso!</strong> Ocorreu um erro e o membro não pode ser cadastrado.
+            </div>
+        {% endif%}
 
         <div class="jumbotron">
             <h2>Cadastrar Novo Membro</h2>
             <p class="lead"></p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+                Cadastrar
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" name="myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Cadastrar novo membro</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="" method="post">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_nome" placeholder="Nome">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_matricula" placeholder="Matrícula">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_curso" placeholder="Curso">
+                                <label for="email">Endereço:</label>
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_rua" placeholder="Rua/Avenida">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_numero" placeholder="Número">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_bairro" placeholder="Bairro">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_cidade" placeholder="Cidade">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_uf" placeholder="UF">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_cep" placeholder="CEP">
+                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_nascimento" placeholder="Nascimento (aaaa-mm-dd)">
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default btn-md" data-dismiss="modal">Fechar</button>
+                                    <button type="submit" class="btn btn-primary btn-md">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row marketing">

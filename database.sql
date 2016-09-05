@@ -14,10 +14,10 @@ create table members                      -- creates the members tables
                   name varchar(100),
                   course varchar(50),
                   street varchar(200),
-                  housenumner varchar(10),
+                  housenumber varchar(10),
                   neighborhood varchar(20),
                   city varchar(20),
                   state varchar(2),
                   cep varchar(9),
                   birth date);            -- list all users by querying table 'user'
-show columns from members;                -- shows table "members" structure
+describe members;                -- shows table "members" structure
