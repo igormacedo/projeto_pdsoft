@@ -5,6 +5,7 @@ How to properly initiate the containers
 sudo docker run --detach --name=container-mysql -v /home/igormacedo/pdsoft:/home/application --env="MYSQL_ROOT_PASSWORD=password" mysql
 
 #To access the mysql database inside the previous container
+sudo docker start container-mysql
 sudo docker exec -it container-mysql bash
 
 #On the container - to create the database structure run the commands below

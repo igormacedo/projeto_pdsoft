@@ -4,7 +4,9 @@
  */
 drop database if exists include;
 
-create database include;                  -- creates working database
+create database include
+    DEFAULT CHARACTER SET utf8;           -- creates working database
+    
 show databases;                           -- show server databases
 use include;                              -- set system database 'include' as the current database
 select database();                        -- shows current database

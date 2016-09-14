@@ -44,13 +44,15 @@
                     <th>Data de Nascimento</th>
 
                 {% for member in members %}
+                    {% autoescape false %}
                     </tr>
                         <td>{{member["uniid"]}}</td>
                         <td>{{member["name"]}}</td>
-                        <td>{{member["course"]}}'</td>
+                        <td>{{member["course"]}}</td>
                         <td>{{member["street"]}}, {{member["housenumber"]}}, {{member["neighborhood"]}}, {{member["city"]}}, {{member["state"]}}, CEP {{member["cep"]}} </td>
                         <td>{{member["birth"]}}</td>
                     </tr>
+                    {% endautoescape %}
                 {%endfor%}
             </table>
         </div>

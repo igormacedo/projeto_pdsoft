@@ -3,9 +3,7 @@ from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 from datetime import date
 import sys
-
-reload(sys)
-sys.setdefaultencoding('utf8')
+import cgi
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'mysql'
@@ -58,11 +56,13 @@ def membersview():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM members")
     row = cur.fetchall()
-    
+
     members = []
     for r in row:
+        ##members.append(dict((cur.description[idx][0], cgi.escape(value).encode('ascii', 'xmlcharrefreplace')) if isinstance(value, unicode) else (cur.description[idx][0], value) for idx, value in enumerate(r)))
         members.append(dict((cur.description[idx][0], value) for idx, value in enumerate(r)))
 
+    print members
     return render_template("membersview.html", members = members)
 
 if __name__ == "__main__":
