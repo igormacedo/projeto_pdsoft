@@ -6,6 +6,8 @@ import sys
 import cgi
 
 app = Flask(__name__)
+
+#MySQL configuration variables
 app.config['MYSQL_HOST'] = 'mysql'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
@@ -13,10 +15,17 @@ app.config['MYSQL_DB'] = 'include'
 app.config['TRAP_BAD_REQUEST_ERRORS'] = True
 mysql = MySQL(app)
 
+#Upload configuration variables
+app.config['PICTURES_FOLDER'] = 'static/users/pictures'
+app.config['ALLOWED_EXTENSIONS'] = set(['png','jpg'])
+
 @app.route("/", methods=["GET","POST"])
 def hello():
+
     cadastro = 0 # 0 - sem cadastro / 1 - cadastro com sucesso/ 2 - cadastro falhou
+
     if request.method == "POST":
+        print("post request")
         cur = mysql.connection.cursor()
 
         nome = request.form['cd_nome']
@@ -59,11 +68,10 @@ def membersview():
 
     members = []
     for r in row:
-        ##members.append(dict((cur.description[idx][0], cgi.escape(value).encode('ascii', 'xmlcharrefreplace')) if isinstance(value, unicode) else (cur.description[idx][0], value) for idx, value in enumerate(r)))
         members.append(dict((cur.description[idx][0], value) for idx, value in enumerate(r)))
 
     print members
     return render_template("membersview.html", members = members)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(threaded=True, debug=True, host="0.0.0.0")

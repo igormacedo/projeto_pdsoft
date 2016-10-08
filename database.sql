@@ -5,21 +5,28 @@
 drop database if exists include;
 
 create database include
-    DEFAULT CHARACTER SET utf8;           -- creates working database
-    
-show databases;                           -- show server databases
-use include;                              -- set system database 'include' as the current database
-select database();                        -- shows current database
+    DEFAULT CHARACTER SET utf8;             -- creates working database
 
-create table members                      -- creates the members tables
-                  (uniid int,
-                  name varchar(100),
-                  course varchar(50),
-                  street varchar(200),
-                  housenumber varchar(10),
-                  neighborhood varchar(20),
-                  city varchar(20),
-                  state varchar(2),
-                  cep varchar(9),
-                  birth date);            -- list all users by querying table 'user'
-describe members;                -- shows table "members" structure
+show databases;                             -- show server databases
+use include;                                -- set system database 'include' as the current database
+select database();                          -- shows current database
+
+create table members                        -- creates the members tables
+    (uniid int,
+    name varchar(200) not null ,
+    course varchar(50),
+    street varchar(200),
+    housenumber varchar(10),
+    neighborhood varchar(20),
+    city varchar(20),
+    state varchar(2),
+    cep varchar(9),
+    housephone varchar(14),
+    mobilephone varchar(14),
+    birth date,
+    email varchar(200) not null,
+    picture varchar(300) not null,
+    login varchar(200) not null,
+    password varchar(200) not null);
+
+describe members;                           -- shows table "members" structure
