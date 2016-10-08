@@ -27,10 +27,13 @@ def hello():
     if request.method == "POST":
         print("post request")
         cur = mysql.connection.cursor()
-
-        nome = request.form['cd_nome']
+        login = request.form["cd_login"]
+        senha = request.form["cd_senha"]
+        email = request.form["cd_email"]
+        nome = request.form["cd_nome"]
         mat = request.form["cd_matricula"]
         curso = request.form["cd_curso"]
+        #foto = request.form['cd_pic']
         rua = request.form["cd_rua"]
         numero = request.form["cd_numero"]
         bairro = request.form["cd_bairro"]
@@ -39,12 +42,12 @@ def hello():
         cep = request.form["cd_cep"]
         nascimento = request.form["cd_nascimento"]
 
-        data = (mat, nome, curso, rua, numero, bairro, cidade, uf, cep, date(1994, 5, 25))
+        data = (login, senha, email, mat, nome, curso, rua, numero, bairro, cidade, uf, cep, date(1994, 5, 25))
         print(data)
 
-        if validateData(nome,mat):
-            cur.execute("INSERT INTO members (uniid,name,course,street,housenumber,neighborhood,city,state,cep,birth)"
-                        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",data)
+        if validateData(login,senha,nome,mat,email):
+            cur.execute("INSERT INTO members (login,senha,email,uniid,name,course,street,housenumber,neighborhood,city,state,cep,birth)"
+                        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",data)
             row = cur.fetchall()
             mysql.connection.commit()
             cadastro = 1
@@ -53,10 +56,16 @@ def hello():
 
     return render_template("home.html", cadastro=cadastro)
 
-def validateData(nome,mat):
-    if nome == "":
+def validateData(login,senha,nome,mat, email):
+    if login == "":
+        return False
+    elif senha == "":
+        return False
+    elif nome == "":
         return False
     elif mat == "" or not(mat.isdigit()):
+        return False
+    elif email =="":
         return False
     return True
 
