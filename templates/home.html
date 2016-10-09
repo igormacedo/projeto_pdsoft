@@ -8,6 +8,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="icon" type="image/jpg" sizes="128x128" href="https://mir-s3-cdn-cf.behance.net/projects/404/8dbef733589885.Y3JvcCw4NDIsNjU3LDAsMTc.jpg" width="20%" height="20%"/>
     <!-- Scripts padrão -->
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.9.1.js') }}"></script>
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -21,11 +22,11 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="active"><a href="#">Home</a>
                     </li>
-                    <li role="presentation"><a data-toggle="modal" data-target="#myModal" href="#">Sign Up</a>
+                    <li role="presentation"><a href="/login">Sign In</a>
+                    </li>
+                    <li role="presentation"><a data-toggle="modal" data-target="#signUpModal" href="#">Sign Up</a>
                     </li>
                     <li role="presentation"><a href="/membersview">Access DB</a>
-                    </li>
-                    <li role="presentation"><a href="showSignIn">Sign In</a>
                     </li>
                 </ul>
             </nav>
