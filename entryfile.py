@@ -83,6 +83,28 @@ def hello():
 
     return render_template("home.html", cadastro=cadastro, logins=logins)
 
+@app.route('/login', methods=["GET","POST"])
+def login():
+    login = 0 # 0 - login / 1 - login com sucesso/ 2 - login invalido/ 3 - senha invalida
+    cur = mysql.connection.cursor()
+    if request.method == "POST":
+        username = request.form["lg_username"]
+        password = request.form["lg_password"]
+        cur.execute("SELECT login FROM members WHERE login = '{}';".format(username))
+
+        if not cur.fetchone()[0]:
+            login = 2
+        else:
+            cur.execute("SELECT login FROM members WHERE password = '{}';".format(password))
+            if not cur.fetchone():
+                login = 3
+            else:
+                login = 1
+                return render_template("user.html", login = login)
+
+
+    return render_template("login.html", login = login)
+
 def validateData(login,senha,nome,mat, email):
     if login == "":
         return False
