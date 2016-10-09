@@ -42,6 +42,7 @@
                     <th>Curso</th>
                     <th>Endereço</th>
                     <th>Data de Nascimento</th>
+                    <th>Foto</th>
 
                 {% for member in members %}
                     {% autoescape false %}
@@ -51,6 +52,11 @@
                         <td>{{member["course"]}}</td>
                         <td>{{member["street"]}}, {{member["housenumber"]}}, {{member["neighborhood"]}}, {{member["city"]}}, {{member["state"]}}, CEP {{member["cep"]}} </td>
                         <td>{{member["birth"]}}</td>
+                        <td>
+                            <div class="thumbnail" style="width:100px;height:100px;">
+                                <img src="{{ url_for('static', filename='users/pictures/'+member["picture"])}}" class="" id="profile_pic">
+                            </div>
+                        </td>
                     </tr>
                     {% endautoescape %}
                 {%endfor%}
