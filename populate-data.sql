@@ -1,3 +1,19 @@
+insert into members values(0000000000,                -- Adding entries to the table
+                            "Admin",
+                            "Admin",
+                            "Root",
+                            "0000",
+                            "Neópolis",
+                            "Natal",
+                            "RN",
+                            "00000-000",
+                            null,
+                            null,
+                            '1995-05-24',
+                            "admin@email.com",
+                            "include.jpg",
+                            "admin",
+                            "admin");
 
 insert into members values(2013017920,                -- Adding entries to the table
                             "Igor Macedo Silva",
