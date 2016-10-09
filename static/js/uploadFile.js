@@ -1,23 +1,3 @@
-document.getElementById("btn_save").onclick = function() {verifyDataFields()};
-
-function verifyDataFields() {
-
-    alert(document.getElementById("cd_login").value);
-
-    if( document.getElementById("cd_login").value != "" &&
-        document.getElementById("cd_email").value != "" &&
-        document.getElementById("cd_nome").value != "" &&
-        document.getElementById("cd_senha").value != "" &&
-        document.getElementById("cd_foto").value != "")
-    {
-        document.getElementById("user_form").submit();
-    }
-    else{
-
-    }
-}
-
-document.getElementById("user_form")
 
 $(function() {
     // We can attach the `fileselect` event to all file inputs on the page
@@ -42,6 +22,20 @@ $(function() {
             }
 
             readURL(this);
+        });
+
+        $('#btn_save').on('click', function(){
+            if( document.getElementById("cd_login").value != "" &&
+                document.getElementById("cd_email").value != "" &&
+                document.getElementById("cd_nome").value != "" &&
+                document.getElementById("cd_senha").value != "" &&
+                document.getElementById("cd_foto").value != "")
+            {
+                document.getElementById("user_form").submit();
+            }
+            else{
+                alert("Campos obrigatórios não foram preenchidos corretamente");
+            }
         });
     });
 

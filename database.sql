@@ -27,6 +27,7 @@ create table members                        -- creates the members tables
     email varchar(200) not null,
     picture varchar(300) not null,
     login varchar(200) not null,
-    password varchar(200) not null);
+    password varchar(200) not null,
+    PRIMARY KEY (login));
 
 describe members;                           -- shows table "members" structure
