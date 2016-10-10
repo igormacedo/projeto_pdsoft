@@ -24,140 +24,20 @@
                     </li>
                     <li role="presentation"><a href="/login">Sign In</a>
                     </li>
-                    <li role="presentation"><a data-toggle="modal" data-target="#myModal" href="#">Sign Up</a>
+                    <li role="presentation"><a href="/signup">Sign Up</a>
                     </li>
                 </ul>
             </nav>
             <h3 class="text-muted">Python Flask App</h3>
         </div>
 
-        {% if cadastro == 1 %}
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Parabéns!</strong> O membro foi cadastrado com sucesso!
-            </div>
-         {% elif cadastro == 2 %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Aviso!</strong> Ocorreu um erro no formato dos dados e o membro não foi cadastrado.
-            </div>
-        {% elif cadastro == 3 %}
-           <div class="alert alert-danger alert-dismissible" role="alert">
-               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-               <strong>Aviso!</strong> Ocorreu um erro no banco de dados e o membro não foi cadastrado.
-           </div>
-        {% endif%}
-
         <div class="jumbotron">
             <h2>Cadastrar Novo Membro</h2>
             <p class="lead"></p>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-                Cadastrar
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" name="myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Cadastrar novo membro</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" id="user_form">
-                                <div class="row">
-
-                                    <div class="col-lg-8">
-                                        <label for="email">Usuário:</label>
-                                        <div id="testdiv">
-                                            <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_login" id="cd_login" placeholder="Login">
-                                            <script>
-                                                $('#cd_login').on('input', function() {
-                                                    var e = document.getElementById("cd_login");
-                                                    var logins = {{logins|safe}};
-                                                    var i;
-                                                    var notUnique = 0;
-                                                    for (i = 0; i < logins.length; i++){
-                                                        if(logins[i] == e.value){
-                                                            notUnique = 1;
-                                                        }
-                                                    }
-
-                                                    var div = document.createElement('div');
-                                                    div.innerHTML = '<div class="alert alert-danger">Este nome de login já foi escolhido</div>';
-
-                                                    if (notUnique == 1){
-                                                        e.style.backgroundColor = "#FF8367";
-                                                        document.getElementById('testdiv').appendChild(div);
-                                                    }
-                                                    else{
-                                                        e.style.backgroundColor = "#98FB98";
-                                                        if(document.getElementById('testdiv').childNodes.length > 0){
-                                                            document.getElementById('testdiv').removeChild(document.getElementById('testdiv').getElementsByTagName('div')[0]);
-                                                        }
-                                                    }
-                                                });
-                                            </script>
-                                        </div>
-
-                                        <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_email" id="cd_email" placeholder="Email">
-                                        <input type="password" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_senha" id="cd_senha" placeholder="Senha">
-                                        <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_nome" id="cd_nome" placeholder="Nome">
-                                        <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_matricula" placeholder="Matrícula">
-                                        <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_curso" placeholder="Curso">
-
-                                        <div class="row" id="file-browser" style="margin:0px;margin-bottom:10px">
-                                            <div class="input-group-btn">
-                                                <div class="input-group" style="display: table; width: 100%;">
-                                                    <label class="input-group-btn">
-                                                        <span class="btn btn-primary" style="font-size: 14px; padding:6px">
-                                                            Selecionar Fotografia <input type="file" name="file" style="display: none;">
-                                                        </span>
-                                                    </label>
-                                                    <span style="display: table-cell; width: 100%;">
-                                                        <input type="text" name="cd_foto" id="cd_foto" class="form-control" readonly>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="thumbnail" style="width:250px;height:330px;">
-                                            <a href="#" class="">
-                                                <img src="" class="" id="profile_pic">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <label for="email">Endereço:</label>
-                                <div class="form-inline" style="display: table; width: 100%;">
-                                    <input type="text" class="form-control" style="margin-top:5px; margin-bottom:5px; display: table-cell; width: 80%;" name="cd_rua" placeholder="Rua/Avenida">
-                                    <input type="text" class="form-control" style="margin-top:5px; margin-bottom:5px; display: table-cell; width: 20%;" name="cd_numero" placeholder="Número">
-                                </div>
-                                <div class="form-inline" style="display: table; width: 100%;">
-                                    <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px; display: table-cell; width: 45%;" name="cd_bairro" placeholder="Bairro">
-                                    <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px; display: table-cell; width: 45%;" name="cd_cidade" placeholder="Cidade">
-                                    <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px; display: table-cell; width: 10%;" name="cd_uf" placeholder="UF">
-                                </div>
-                                <div class="form-inline" style="display: table; width: 100%;">
-                                    <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px; display: table-cell; width: 50%;" name="cd_tel" placeholder="Telefone Residencial">
-                                    <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px; display: table-cell; width: 50%;" name="cd_cel" placeholder="Telefone Móvel">
-                                </div>
-
-                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_cep" placeholder="CEP">
-                                <input type="text" class="form-control" style="margin-top:10px; margin-bottom:10px;" name="cd_nascimento" placeholder="Nascimento (aaaa-mm-dd)">
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default btn-md" data-dismiss="modal">Fechar</button>
-                                    <button type="button" class="btn btn-primary btn-md" id="btn_save" onclick="verifyDataFields()">Salvar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a href="/signup">
+                <button type="button" class="btn btn-success btn-lg">Cadastrar</button>
+            </a>
         </div>
 
         <div class="row marketing">

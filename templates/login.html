@@ -5,7 +5,7 @@
     <title>Login</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="icon" type="image/jpg" sizes="128x128" href="https://mir-s3-cdn-cf.behance.net/projects/404/8dbef733589885.Y3JvcCw4NDIsNjU3LDAsMTc.jpg" width="20%" height="20%"/>
@@ -17,46 +17,58 @@
 
 <body>
 	<div class="container">
-		<div class="header">
-			<nav>
-				<ul class="nav nav-pills pull-right">
-					<li role="presentation" class="active"><a href="/">Home</a>
-					</li>
-					<li role="presentation"><a data-toggle="modal" data-target="#signUpModal" href="#">Sign Up</a>
-					</li>
-				</ul>
-			</nav>
-			<h3 class="text-muted">Python Flask App</h3>
-		</div>
-	
-	
-	{% if login == 1%}
-	<div class="alert alert-success alert-dismissible" role="alert">
-	    <button type="button" class="btn btn-success" data-dismiss="alert" aria-label="Ok"><span aria-hidden="true">&times;</span></button>
-	    <strong>Login efetuado com sucesso!</strong>
-	</div>
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/">Home</a>
+                    </li>
+                    <li role="presentation" class="active"><a href="/login">Sign In</a>
+                    </li>
+                    <li role="presentation"><a href="/signup">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Python Flask App</h3>
+        </div>
 
-	{% elif login == 2 %}
-	<div class="alert alert-danger alert-dismissible" role="alert">
-	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    <strong>Credenciais inválidas, tente novamente.</strong>
-	</div>
-	{% elif login == 3 %}
-	<div class="alert alert-danger alert-dismissible" role="alert">
-	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    <strong>Senha inválida, tente novamente.</strong>
-	</div>
-    	{% endif%}
-	
-    <div class="container">
-		<h4>Login:</h4>
-		<form action="" class="form-inline" method="post">
-			<input type="text" class="form-control" placeholder="Username" name="lg_username"><br>
-			<input type="password" class="form-control" placeholder="Password" name="lg_password"><br>
-			<input class="btn btn-default" type="submit" value="Login">
-			<a href="/" class="btn btn-default">Voltar</a>
-		</form>		
-	</div>
+    	{% if login == 1%}
+    	<div class="alert alert-success alert-dismissible" role="alert">
+    	    <button type="button" class="btn btn-success" data-dismiss="alert" aria-label="Ok"><span aria-hidden="true">&times;</span></button>
+    	    <strong>Login efetuado com sucesso!</strong>
+    	</div>
+
+    	{% elif login == 2 %}
+    	<div class="alert alert-danger alert-dismissible" role="alert">
+    	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    	    <strong>Credenciais inválidas, tente novamente.</strong>
+    	</div>
+    	{% elif login == 3 %}
+    	<div class="alert alert-danger alert-dismissible" role="alert">
+    	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    	    <strong>Senha inválida, tente novamente.</strong>
+    	</div>
+        {% endif%}
+
+        <form class="form-horizontal" action="" method="post">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">User Login</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="lg_username" placeholder="Login">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" name="lg_password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default" value="Login">Login</button>
+                </div>
+            </div>
+        </form>
+
 		<footer class="footer">
             <p>&copy; Company 2015</p>
         </footer>
