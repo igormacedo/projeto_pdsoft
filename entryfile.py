@@ -92,7 +92,7 @@ def login():
         password = request.form["lg_password"]
         cur.execute("SELECT login FROM members WHERE login = '{}';".format(username))
 
-        if not cur.fetchone()[0]:
+        if not cur.fetchone():
             login = 2
         else:
             cur.execute("SELECT login FROM members WHERE password = '{}';".format(password))
