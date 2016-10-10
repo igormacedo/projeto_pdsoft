@@ -16,24 +16,39 @@
 </head>
 
 <body>
+	<div class="container">
+		<div class="header">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="#">Home</a>
+					</li>
+					<li role="presentation"><a href="/login">Sign In</a>
+					</li>
+					<li role="presentation"><a data-toggle="modal" data-target="#signUpModal" href="#">Sign Up</a>
+					</li>
+				</ul>
+			</nav>
+			<h3 class="text-muted">Python Flask App</h3>
+		</div>
+	
+	
 	{% if login == 1%}
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="btn btn-success" data-dismiss="alert" aria-label="Ok"><span aria-hidden="true">&times;</span></button>
-            <strong>Login efetuado com sucesso!</strong>
-            
-        </div>
+	<div class="alert alert-success alert-dismissible" role="alert">
+	    <button type="button" class="btn btn-success" data-dismiss="alert" aria-label="Ok"><span aria-hidden="true">&times;</span></button>
+	    <strong>Login efetuado com sucesso!</strong>
+	</div>
 
-    {% elif login == 2 %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Credenciais inválidas, tente novamente.</strong>
-        </div>
+	{% elif login == 2 %}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    <strong>Credenciais inválidas, tente novamente.</strong>
+	</div>
 	{% elif login == 3 %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Senha inválida, tente novamente.</strong>
-        </div>
-    {% endif%}
+	<div class="alert alert-danger alert-dismissible" role="alert">
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    <strong>Senha inválida, tente novamente.</strong>
+	</div>
+    	{% endif%}
 	
     <div class="container">
 		<h4>Login:</h4>
@@ -47,7 +62,6 @@
 		<footer class="footer">
             <p>&copy; Company 2015</p>
         </footer>
-
     </div>
 </body>
 
