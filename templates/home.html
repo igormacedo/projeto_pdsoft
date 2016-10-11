@@ -38,7 +38,7 @@
             <h2>Bem Vindo, {{current_user.id}}</h2>
             <p class="lead"></p>
 
-            <img src="{{url_for('static', filename='users/pictures/'+pic)}}">
+            <img src="{{url_for('static', filename='users/pictures/'+pic)}}"  style="witdth=250;height=300">
         </div>
         {%else%}
         <div class="jumbotron">
