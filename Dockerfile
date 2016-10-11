@@ -34,6 +34,7 @@ RUN apt-get install -y \
 # Install flask
 RUN pip install --upgrade pip
 RUN pip install flask
+RUN pip install flask-login
 
 #Instal MySQL - OBS.: MySQL will be created in another container with the default image from Docker Hub
 #RUN apt-get install mysql-server

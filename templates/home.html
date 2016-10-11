@@ -8,7 +8,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="icon" type="image/jpg" sizes="128x128" href="https://mir-s3-cdn-cf.behance.net/projects/404/8dbef733589885.Y3JvcCw4NDIsNjU3LDAsMTc.jpg" width="20%" height="20%"/>
+    <link rel="icon" type="image/jpg" sizes="128x128" href="https://mir-s3-cdn-cf.behance.net/projects/404/8dbef733589885.Y3JvcCw4NDIsNjU3LDAsMTc.jpg" width="20%" height="20%" />
     <!-- Scripts padrão -->
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.9.1.js') }}"></script>
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -20,25 +20,35 @@
         <div class="header">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a>
-                    </li>
-                    <li role="presentation"><a href="/login">Sign In</a>
-                    </li>
-                    <li role="presentation"><a href="/signup">Sign Up</a>
-                    </li>
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    {% if current_user.is_authenticated%}
+                        <li role="presentation"><a href="/membersview">View Members</a></li>
+                        <li role="presentation"><a href="/logout">Log Out</a></li>
+                    {%else%}
+                        <li role="presentation"><a href="/signup">Sign Up</a>
+                        <li role="presentation"><a href="/login">Log In</a></li>
+                    {%endif%}
                 </ul>
             </nav>
             <h3 class="text-muted">Python Flask App</h3>
         </div>
 
+        {% if current_user.is_authenticated %}
         <div class="jumbotron">
-            <h2>Cadastrar Novo Membro</h2>
+            <h2>Bem Vindo, {{current_user.id}}</h2>
             <p class="lead"></p>
-            <!-- Button trigger modal -->
+
+            <img src="{{url_for('static', filename='users/pictures/'+pic)}}">
+        </div>
+        {%else%}
+        <div class="jumbotron">
+            <h2>Ainda não é membro? </h2>
+            <p class="lead"></p>
             <a href="/signup">
                 <button type="button" class="btn btn-success btn-lg">Cadastrar</button>
             </a>
         </div>
+        {%endif%}
 
         <div class="row marketing">
             <div class="col-lg-6">
